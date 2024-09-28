@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Drive Wise</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="header">Drive Wise</h1>
+        <form id="timeForm">
+            <label for="destination">Destination Address:</label>
+            <input type="text" id="destination" placeholder="Enter address" required>
+
+            <label for="eventTime">Event Time:</label>
+            <input type="datetime-local" id="eventTime" required>
+
+            <label for="travelTime">Estimated Travel Time (minutes):</label>
+            <input type="number" id="travelTime" placeholder="e.g., 30" required>
+
+            <button type="submit">Calculate Best Time to Leave</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

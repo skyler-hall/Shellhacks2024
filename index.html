@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Wise Route Planner</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Drive Wise Route Planner</h1>
+        <form id="routeForm">
+            <input type="text" id="startAddress" placeholder="Enter Start Address" required>
+            <input type="text" id="endAddress" placeholder="Enter End Address" required>
+            <input type="number" id="threshold" placeholder="Enter Time Threshold (minutes)" required>
+            <button type="button" onclick="calculateRoute()">Set Notification</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <!-- Include the Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <!-- Link to the external script file -->
+    <script src="script.js"></script>
+</body>
+</html>
