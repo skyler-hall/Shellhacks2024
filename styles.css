@@ -13,7 +13,7 @@ body {
     background-repeat: no-repeat; /* Prevent the image from repeating */
     background-attachment: fixed; /* Keep the background fixed during scrolling */
     margin: 0; /* Remove default margin */
-    height: 100vh; /* Set the body height to full viewport height */
+    height: 100vh; /* Set the body height to the full viewport height */
 }
 
 .container {
@@ -22,6 +22,10 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 8px;
     width: 300px;
+    display: center;
+    align-items: center;
+    justify-content: center;
+
 }
 
 h1 {
