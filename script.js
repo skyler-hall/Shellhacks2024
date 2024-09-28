@@ -1,44 +1,22 @@
-async function init() {
-    await customElements.whenDefined('gmp-map');
-  
-    const map = document.querySelector("gmp-map");
-    const marker = document.getElementById("marker");
-    const strictBoundsInputElement = document.getElementById("use-strict-bounds");
-    const placePicker = document.getElementById("place-picker");
-    const infowindowContent = document.getElementById("infowindow-content");
-    const infowindow = new google.maps.InfoWindow();
-  
-    map.innerMap.setOptions({mapTypeControl: false});
-    infowindow.setContent(infowindowContent);
-  
-    placePicker.addEventListener('gmpx-placechange', () => {
-      const place = placePicker.value;
-  
-      if (!place.location) {
-        window.alert(
-          "No details available for input: '" + place.name + "'"
-        );
-        infowindow.close();
-        marker.position = null;
-        return;
-      }
-  
-      if (place.viewport) {
-        map.innerMap.fitBounds(place.viewport);
-      } else {
-        map.center = place.location;
-        map.zoom = 17;
-      }
-  
-      marker.position = place.location;
-      infowindowContent.children["place-name"].textContent = place.displayName;
-      infowindowContent.children["place-address"].textContent = place.formattedAddress;
-      infowindow.open(map.innerMap, marker);
-    });
-  
-    strictBoundsInputElement.addEventListener("change", () => {
-      placePicker.strictBounds = strictBoundsInputElement.checked;
-    });
+document.getElementById('timeForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Get user input
+  const destination = document.getElementById('destination').value;
+  const eventTime = new Date(document.getElementById('eventTime').value);
+  const travelTime = parseInt(document.getElementById('travelTime').value);
+
+  if (!destination || !eventTime || isNaN(travelTime)) {
+      alert('Please fill in all fields correctly.');
+      return;
   }
-  
-  document.addEventListener('DOMContentLoaded', init);
+
+  // Calculate the best time to leave
+  const leaveTime = new Date(eventTime.getTime() - travelTime * 6000);
+
+  // Format the leave time
+  const formattedLeaveTime = `${leaveTime.getHours().toString().padStart(2, '0')}:${leaveTime.getMinutes().toString().padStart(2, '0')}`;
+
+  // Display result
+  document.getElementById('result').innerHTML = `Best time to leave for <strong>${destination}</strong> is at <strong>${formattedLeaveTime}</strong>.`;
+});
