@@ -1,22 +1,21 @@
-document.getElementById('timeForm').addEventListener('submit', function(event) {
-  event.preventDefault();
+function loadGoogleAPI() {
+  gapi.load('client:auth2', initClient);
+}
 
-  // Get user input
-  const destination = document.getElementById('destination').value;
-  const eventTime = new Date(document.getElementById('eventTime').value);
-  const travelTime = parseInt(document.getElementById('travelTime').value);
-
-  if (!destination || !eventTime || isNaN(travelTime)) {
-      alert('Please fill in all fields correctly.');
-      return;
-  }
-
-  // Calculate the best time to leave
-  const leaveTime = new Date(eventTime.getTime() - travelTime * 6000);
-
-  // Format the leave time
-  const formattedLeaveTime = `${leaveTime.getHours().toString().padStart(2, '0')}:${leaveTime.getMinutes().toString().padStart(2, '0')}`;
-
-  // Display result
-  document.getElementById('result').innerHTML = `Best time to leave for <strong>${destination}</strong> is at <strong>${formattedLeaveTime}</strong>.`;
-});
+function initClient() {
+  gapi.client.init({
+      apiKey: 'YOUR_API_KEY',
+      clientId: 'YOUR_CLIENT_ID',
+      discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+      scope: 'https://www.googleapis.com/auth/calendar' // Set the necessary scope for your app
+  }).then(() => {
+      // Check if the user is signed in or not
+      if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+          console.log("User is already signed in.");
+      } else {
+          console.log("User is not signed in.");
+      }
+  }, (error) => {
+      console.error("Error initializing Google API client", error);
+  });
+}
