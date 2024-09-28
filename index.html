@@ -6,59 +6,22 @@
     <title>Drive Wise</title>
 </head>
 <body>
-    <header>
-        <h1>Drive Wise</h1>
-    </header>
+    <div class="container">
+        <h1>Best Time to Leave</h1>
+        <form id="timeForm">
+            <label for="destination">Destination Address:</label>
+            <input type="text" id="destination" placeholder="Enter address" required>
 
-    <main>
-        <section>
-                <h2>Enter your details</h2>
+            <label for="eventTime">Event Time:</label>
+            <input type="datetime-local" id="eventTime" required>
 
+            <label for="travelTime">Estimated Travel Time (minutes):</label>
+            <input type="number" id="travelTime" placeholder="e.g., 30" required>
 
-                                    <html>
-
-                        <!--
-                        This loads helper components from the Extended Component Library,
-                        https://github.com/googlemaps/extended-component-library.
-                        Please note unpkg.com is unaffiliated with Google Maps Platform.
-                        -->
-                        <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6">
-                        </script>
-                        <gmpx-api-loader
-                            key="INSERT_YOUR_API_KEY"
-                            solution-channel="GMP_CCS_autocomplete_v4">
-                        </gmpx-api-loader>
-                        <gmp-map id="map" center="40.749933,-73.98633" zoom="13" map-id="DEMO_MAP_ID">
-                        <div slot="control-block-start-inline-start" class="pac-card" id="pac-card">
-                            <div>
-                            <div id="title">Autocomplete search</div>
-                            <br />
-                            </div>
-                            <gmpx-place-picker id="place-picker" for-map="map"></gmpx-place-picker>
-                        </div>
-                        <gmp-advanced-marker id="marker"></gmp-advanced-marker>
-                        </gmp-map>
-                        <div id="infowindow-content">
-                        <span id="place-name" class="title" style="font-weight: bold;"></span><br />
-                        <span id="place-address"></span>
-                        </div>
-                    </html>
-
-
-
-
-        </section>
-
-    </main>
-
-
-
-
-
-
-    // the idea is you put in your address, where you're communting too, and you're class scheculde by allowing acess to google calendar and it notifies yu when the best time to head down.
-    // best for college students who don't have time to watch the commuting time
-
-
+            <button type="submit">Calculate Best Time to Leave</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
